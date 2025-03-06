@@ -1,0 +1,199 @@
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: yellow;
+}
+
+
+header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #333;
+    color: yellow;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+
+main {
+    background-color: yellow;
+    text-align: center;
+    margin-top: 100px;
+}
+.reservation-title {
+    font-size: 64px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 50px;
+    color: #333;
+}
+
+h1 {
+    text-align: center;
+    flex-grow: 1;
+}
+
+/* Бутон "GO" */
+.go-button {
+    background-color: yellow;
+    color: black;
+    border: none;
+    margin-right: 30px;
+    padding: 10px 50px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+.go-button:hover {
+    background-color: #218838;
+}
+/*login*/
+/* Стилизация на хедъра */
+.header {
+    background-color: black;
+    color: yellow;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+}
+
+/* Стил за заглавието в хедъра */
+.header-title {
+    text-align: center;
+    font-size: 24px;
+    margin: 0;
+}
+
+/* Стил за бутона в хедъра */
+.header-button {
+    background-color: yellow;
+    color: black;
+    text-decoration: none;
+    margin-right: 50px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    display: inline-block;
+    text-align: center;
+}
+
+.header-button:hover {
+    background-color: green !important;
+}
+
+/* Центриране на формата */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+
+/* Формата за логин */
+.login-form {
+    display: flex;
+    flex-direction: column;
+    background: #f5f5f5;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Стил за полетата */
+.login-form input {
+    margin: 5px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Стил за бутона за вход */
+.login-btn {
+    background-color: yellow;
+    color: black;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.login-btn:hover {
+    background-color: green !important;
+
+}
+/*register*/
+/* Центриране на формата */
+.form-container {
+    width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Стил за input полетата */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+.header-button {
+
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Стил за грешките */
+.error-message {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+/* Стил за бутона */
+.btn {
+    width: 100%;
+    padding: 10px;
+    background-color: yellow;
+    color: black;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn:hover {
+    background-color: darkgoldenrod;
+}
