@@ -33,15 +33,15 @@ public class UserRegisterDTO implements Serializable {
     @NotBlank(message = "Confirm password is required.")
     private String confirmPassword;
 
-    @NotNull(message = "Role is required.")
-    private String role;
+
+    //private String role;
 
 
     public UserRegisterDTO() {
     }
 
     public UserRegisterDTO(String firstName, String lastName, String email, String phoneNumber,
-                           String username, String password, String confirmPassword, String role) {
+                           String username, String password, String confirmPassword) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -49,7 +49,7 @@ public class UserRegisterDTO implements Serializable {
         this.username = username;
         this.password = password;
         this.confirmPassword = confirmPassword;
-        this.role = role;
+
     }
 
 
@@ -109,12 +109,12 @@ public class UserRegisterDTO implements Serializable {
         this.confirmPassword = confirmPassword;
     }
 
-    public String getRole() {
-        return role;
-    }
+   // public String getRole() {
+     //   return role;
+    //}
 
-    public void setRole(String role) {
-        this.role = role;
-    }
+   // public void setRole(String role) {
+   //     this.role = role;
+    //}
 }
 

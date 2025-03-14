@@ -1,4 +1,4 @@
 package org.example.myfirstproject.Services;
 
-public interface ServiceEntityService {
+public interface OfferingService {
 }

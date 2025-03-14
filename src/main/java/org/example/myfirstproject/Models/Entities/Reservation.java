@@ -27,12 +27,12 @@ public class Reservation extends BaseEntity{
             joinColumns = @JoinColumn(name = "reservations_id"),
             inverseJoinColumns = @JoinColumn(name = "services_id")
     )
-    private Set<ServiceEntity> services = new HashSet<>();
+    private Set<Offering> services = new HashSet<>();
 
     public Reservation() {
     }
 
-    public Reservation(LocalDateTime reservationDate, ReservationStatusEnum status, User user, Set<ServiceEntity> services) {
+    public Reservation(LocalDateTime reservationDate, ReservationStatusEnum status, User user, Set<Offering> services) {
         this.reservationDate = reservationDate;
         this.status = status;
         this.user = user;

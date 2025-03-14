@@ -137,33 +137,43 @@ h1 {
 
 }
 /*register*/
-/* Центриране на формата */
 .form-container {
-    width: 400px;
-    margin: 50px auto;
-    padding: 20px;
+    width: 600px; /* По-широк контейнер за две колони */
+    margin: 80px auto; /* Центриране на страницата */
+    padding: 30px;
     background: #fff;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
 }
 
+/* === Заглавие на формата === */
 h2 {
     text-align: center;
     margin-bottom: 20px;
 }
 
-/* Стил за input полетата */
+/* === Подредба на двете колони === */
+.form-fields {
+    display: flex;
+    justify-content: space-between; /* Разделя колоните */
+    gap: 20px;
+}
+
+/* === Всяка колона заема 50% от контейнера === */
+.column {
+    width: 48%;
+}
+
+/* === Полета във формата === */
 .form-group {
+    display: flex;
+    flex-direction: column;
     margin-bottom: 15px;
 }
 
 .form-group label {
-    display: block;
     font-weight: bold;
     margin-bottom: 5px;
-}
-.header-button {
-
 }
 
 .form-group input,
@@ -172,18 +182,21 @@ h2 {
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    font-size: 16px; /* Направи текста еднакъв */
 }
 
-/* Стил за грешките */
+/* === Грешки под полетата === */
 .error-message {
     color: red;
     font-size: 12px;
     margin-top: 5px;
 }
 
-/* Стил за бутона */
+/* === Бутона "Register" === */
 .btn {
-    width: 100%;
+    width: 50%;
+    display: block;
+    margin: 20px auto 0; /* Центриране */
     padding: 10px;
     background-color: yellow;
     color: black;
@@ -197,3 +210,72 @@ h2 {
 .btn:hover {
     background-color: darkgoldenrod;
 }
+
+/* === Хедър стилове === */
+.header {
+    background-color: black;
+    color: yellow;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+}
+
+.header-title {
+    text-align: center;
+    font-size: 24px;
+    margin: 0;
+}
+/*хоумстраницата*/
+/* Хедър */
+.header {
+    background-color: black;
+    color: yellow;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+}
+
+/* Стил за заглавието */
+.header-title {
+    font-size: 24px;
+    margin: 0;
+    text-align: center;
+}
+
+/* Бутони в хедъра */
+.header-button {
+    background-color: yellow;
+    color: black;
+    text-decoration: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+}
+.header-button:hover {
+    background-color: green;
+}
+
+/* Основен контейнер */
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    text-align: center;
+}
+
+/* Текст */
+h2 {
+    color: black;
+    font-size: 28px;
+}
+
+p {
+    font-size: 18px;
+    color: #333;
+}
+

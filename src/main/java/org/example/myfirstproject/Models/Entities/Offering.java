@@ -4,12 +4,11 @@ import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table(name = "services")
-public class ServiceEntity extends BaseEntity{
+@Table(name = "offerings")
+public class Offering extends BaseEntity{
     @Column(nullable = false)
     private String name;
 
@@ -22,10 +21,10 @@ public class ServiceEntity extends BaseEntity{
     @ManyToMany(mappedBy = "services")
     private Set<Reservation> reservations = new HashSet<>();
 
-    public ServiceEntity() {
+    public Offering() {
     }
 
-    public ServiceEntity(String name, String description, BigDecimal price, Set<Reservation> reservations) {
+    public Offering(String name, String description, BigDecimal price, Set<Reservation> reservations) {
         this.name = name;
         this.description = description;
         this.price = price;
