@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Settings</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<header class="admin-header">
+    <a th:href="@{/adminHome}" class="back-button">Back</a>
+    <h1 class="header-title">Admin Settings</h1>
+</header>
+
+<main class="admin-settings">
+    <div class="form-container">
+        <h2>Edit Your Details</h2>
+        <form th:action="@{/admin/settings}" method="post" th:object="${settingsDTO}">
+
+            <div class="form-group">
+                <label for="firstName">First Name</label>
+                <input type="text" id="firstName" th:field="*{firstName}" required>
+                <p class="error-message" th:errors="*{firstName}"></p>
+            </div>
+
+            <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <input type="text" id="lastName" th:field="*{lastName}" required>
+                <p class="error-message" th:errors="*{lastName}"></p>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" th:field="*{email}" required>
+                <p class="error-message" th:errors="*{email}"></p>
+            </div>
+
+            <div class="form-group">
+                <label for="phoneNumber">Phone Number</label>
+                <input type="text" id="phoneNumber" th:field="*{phoneNumber}" required>
+                <p class="error-message" th:errors="*{phoneNumber}"></p>
+            </div>
+
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" th:field="*{username}" required>
+                <p class="error-message" th:errors="*{username}"></p>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" th:field="*{password}" required>
+                <p class="error-message" th:errors="*{password}"></p>
+            </div>
+
+            <button type="submit" class="save-btn">Save</button>
+        </form>
+    </div>
+</main>
+
+</body>
+</html>

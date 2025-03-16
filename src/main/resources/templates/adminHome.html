@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+</head>
+<body>
+
+<header class="header">
+    <a th:href="@{/logout}" class="header-button">Logout</a>
+    <h1 class="header-title">Admin Panel</h1>
+    <a th:href="@{/admin/users}" class="header-button">Users</a>
+    <a th:href="@{/admin/reservations}" class="header-button">Reservations</a>
+    <a th:href="@{/admin/settings}" class="header-button">Settings</a>
+</header>
+
+<main class="container">
+    <h2>Welcome, Admin!</h2>
+    <p>Here you can manage users, reservations, and settings.</p>
+    <p th:if="${successMessage}" th:text="${successMessage}" class="success-message"></p>
+</main>
+
+</body>
+</html>
