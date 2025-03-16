@@ -1,7 +1,7 @@
 package org.example.myfirstproject.Services.Impl;
 
 import jakarta.transaction.Transactional;
-import org.example.myfirstproject.Models.DTO.AdminSettingsDTO;
+import org.example.myfirstproject.Models.DTO.SettingsDTO;
 import org.example.myfirstproject.Models.DTO.UserRegisterDTO;
 import org.example.myfirstproject.Models.Entities.User;
 import org.example.myfirstproject.Models.Enums.RoleEnum;
@@ -80,19 +80,36 @@ public class UserServiceImpl implements UserService {
     }
     @Transactional
     @Override
-    public void updateAdminSettings(AdminSettingsDTO adminSettingsDTO) {
-        User admin = findByUsername(adminSettingsDTO.getUsername());
+    public void updateAdminSettings(SettingsDTO settingsDTO) {
+        User admin = findByUsername(settingsDTO.getUsername());
 
-        admin.setFirstName(adminSettingsDTO.getFirstName());
-        admin.setLastName(adminSettingsDTO.getLastName());
-        admin.setEmail(adminSettingsDTO.getEmail());
-        admin.setPhoneNumber(adminSettingsDTO.getPhoneNumber());
+        admin.setFirstName(settingsDTO.getFirstName());
+        admin.setLastName(settingsDTO.getLastName());
+        admin.setEmail(settingsDTO.getEmail());
+        admin.setPhoneNumber(settingsDTO.getPhoneNumber());
 
         // Ако паролата не е празна, обновяваме я
-        if (adminSettingsDTO.getPassword() != null && !adminSettingsDTO.getPassword().isEmpty()) {
-            admin.setPassword(passwordEncoder.encode(adminSettingsDTO.getPassword()));
+        if (settingsDTO.getPassword() != null && !settingsDTO.getPassword().isEmpty()) {
+            admin.setPassword(passwordEncoder.encode(settingsDTO.getPassword()));
         }
 
         userRepository.save(admin);
+    }
+
+    @Override
+    public void updateUserSettings(SettingsDTO settingsDTO) {
+        User user = findByUsername(settingsDTO.getUsername());
+
+        user.setFirstName(settingsDTO.getFirstName());
+        user.setLastName(settingsDTO.getLastName());
+        user.setEmail(settingsDTO.getEmail());
+        user.setPhoneNumber(settingsDTO.getPhoneNumber());
+
+        // Ако паролата не е празна, обновяваме я
+        if (settingsDTO.getPassword() != null && !settingsDTO.getPassword().isEmpty()) {
+            user.setPassword(passwordEncoder.encode(settingsDTO.getPassword()));
+        }
+
+        userRepository.save(user);
     }
 }
