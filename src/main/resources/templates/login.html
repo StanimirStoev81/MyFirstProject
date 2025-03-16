@@ -6,6 +6,7 @@
   <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
 </head>
 <body>
+
 <header class="header">
   <h1 class="header-title">Reservation System</h1>
   <a th:href="@{/register}" class="header-button">Registration</a>
@@ -13,14 +14,27 @@
 
 <main class="login-container">
   <form action="/login" method="post" class="login-form">
+
+    <!-- Грешка при неуспешен логин -->
+    <p th:if="${param.error}" class="error-message">Invalid username or password.</p>
+
+    <!-- Поле за потребителско име -->
     <label for="username">Username</label>
     <input type="text" id="username" name="username" required>
 
+    <!-- Грешка за невалидно потребителско име -->
+    <p th:if="${usernameError}" th:text="${usernameError}" class="error-message"></p>
+
+    <!-- Поле за парола -->
     <label for="password">Password</label>
     <input type="password" id="password" name="password" required>
+
+    <!-- Грешка за невалидна парола -->
+    <p th:if="${passwordError}" th:text="${passwordError}" class="error-message"></p>
 
     <button type="submit" class="login-btn">Login</button>
   </form>
 </main>
+
 </body>
 </html>

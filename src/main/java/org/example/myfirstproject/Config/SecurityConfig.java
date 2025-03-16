@@ -35,6 +35,7 @@ public class SecurityConfig {
                 .formLogin(form -> form
                         .loginPage("/login")
                         .defaultSuccessUrl("/", true) // Тук можем да пренасочим динамично
+                        .failureUrl("/login?error")
                         .successHandler((request, response, authentication) -> {
                             if (authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ADMIN"))) {
                                 response.sendRedirect("/adminHome");

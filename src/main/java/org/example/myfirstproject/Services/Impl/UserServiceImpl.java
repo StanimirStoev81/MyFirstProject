@@ -1,5 +1,7 @@
 package org.example.myfirstproject.Services.Impl;
 
+import jakarta.transaction.Transactional;
+import org.example.myfirstproject.Models.DTO.AdminSettingsDTO;
 import org.example.myfirstproject.Models.DTO.UserRegisterDTO;
 import org.example.myfirstproject.Models.Entities.User;
 import org.example.myfirstproject.Models.Enums.RoleEnum;
@@ -13,7 +15,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
-import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -55,6 +56,7 @@ public class UserServiceImpl implements UserService {
                 .orElseThrow(() -> new UsernameNotFoundException("User not found: " + username));
     }
 
+
     @Override
     public boolean isPasswordCorrect(User user, String password) {
         return false;
@@ -75,5 +77,22 @@ public class UserServiceImpl implements UserService {
                 user.getPassword(),
                 Collections.singletonList(new SimpleGrantedAuthority(user.getRole().name()))
         );
+    }
+    @Transactional
+    @Override
+    public void updateAdminSettings(AdminSettingsDTO adminSettingsDTO) {
+        User admin = findByUsername(adminSettingsDTO.getUsername());
+
+        admin.setFirstName(adminSettingsDTO.getFirstName());
+        admin.setLastName(adminSettingsDTO.getLastName());
+        admin.setEmail(adminSettingsDTO.getEmail());
+        admin.setPhoneNumber(adminSettingsDTO.getPhoneNumber());
+
+        // Ако паролата не е празна, обновяваме я
+        if (adminSettingsDTO.getPassword() != null && !adminSettingsDTO.getPassword().isEmpty()) {
+            admin.setPassword(passwordEncoder.encode(adminSettingsDTO.getPassword()));
+        }
+
+        userRepository.save(admin);
     }
 }
