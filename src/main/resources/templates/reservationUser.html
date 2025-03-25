@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Reservation</title>
+    <link rel="stylesheet" type="text/css" href="/css/reservationStyle.css">
+</head>
+<body>
+
+<!-- Хедър с бутон за връщане -->
+<div class="header">
+    <a href="/" class="back-button">Back</a>
+    Reservation
+</div>
+
+<!-- Основен контейнер с два блока -->
+<div class="container">
+    <!-- Ляв контейнер (Данни на потребителя) -->
+    <div class="left-container">
+        <h3>Enter your details</h3>
+        <form th:action="@{/user/reservation}" method="post">
+            <label for="firstName">First Name:</label>
+            <input type="text" id="firstName" name="firstName" required>
+
+            <label for="lastName">Last Name:</label>
+            <input type="text" id="lastName" name="lastName" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="phoneNumber">Phone Number:</label>
+            <input type="text" id="phoneNumber" name="phoneNumber" required>
+
+            <label for="startDate">Start Date:</label>
+            <input type="datetime-local" id="startDate" name="startDate" required>
+
+            <label for="endDate">End Date:</label>
+            <input type="datetime-local" id="endDate" name="endDate" required>
+    </div>
+
+    <!-- Десен контейнер (Допълнителни услуги) -->
+    <div class="right-container">
+        <h3>Choose Additional Offerings</h3>
+        <div class="offerings-list">
+            <th:block th:each="offering : ${offerings}">
+                <div class="offering-item">
+                    <input type="checkbox" th:id="${offering.id}" name="selectedOfferingIds"
+                           th:value="${offering.id}">
+                    <label th:for="${offering.id}" th:text="${offering.name} + ' - ' + ${offering.price} + ' BGN'"></label>
+                </div>
+            </th:block>
+        </div>
+    </div>
+</div>
+
+<!-- Бутон за следваща стъпка -->
+<div class="button-container">
+    <button type="submit">Next</button>
+</div>
+
+</form>
+
+</body>
+</html>
