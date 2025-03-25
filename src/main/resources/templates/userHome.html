@@ -10,6 +10,7 @@
 <header class="header">
     <a th:href="@{/logout}" class="header-button">Logout</a>
     <h1 class="header-title">User Dashboard</h1>
+    <a th:href="@{/user/reservation}" class="header-button">Reservation</a> <!-- 🔹 Добавен бутон -->
     <a th:href="@{/user/settings}" class="header-button">Settings</a>
 </header>
 
@@ -20,26 +21,7 @@
 </main>
 <div id="weather-time"></div>
 
-<script>
-    async function fetchWeatherAndTime() {
-        try {
-            const response = await fetch('/api/weather-time');
-            const data = await response.text();
-            document.getElementById('weather-time').innerText = data;
-        } catch (error) {
-            console.error("Error fetching data:", error);
-            document.getElementById('weather-time').innerText = "Failed to load data";
-        }
-    }
-
-    // Първоначално зареждане (използваме .then() за избягване на предупреждението)
-    fetchWeatherAndTime().catch(console.error);
-
-    // Автоматично обновяване на всеки 30 секунди
-    setInterval(() => {
-        fetchWeatherAndTime().catch(console.error);
-    }, 30000);
-</script>
+<script src="/js/script.js"></script>
 
 </body>
 </html>

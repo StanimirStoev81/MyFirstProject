@@ -28,13 +28,14 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable()) // Изключваме CSRF за по-лесно тестване
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/", "/index", "/login", "/register").permitAll()
-                        .requestMatchers("/adminHome").hasAuthority("ADMIN") // или hasRole("ADMIN") ако имаш "ROLE_ADMIN"
-                        .requestMatchers("/userHome").hasAuthority("USER")  // или hasRole("USER") ако имаш "ROLE_USER"
+                        .requestMatchers("/api/reservations").permitAll() // 🟢 Добавяме публичен достъп за API-то
+                        .requestMatchers("/adminHome").hasAuthority("ADMIN")
+                        .requestMatchers("/userHome").hasAuthority("USER")
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
                         .loginPage("/login")
-                        .defaultSuccessUrl("/", true) // Тук можем да пренасочим динамично
+                        .defaultSuccessUrl("/", true)
                         .failureUrl("/login?error")
                         .successHandler((request, response, authentication) -> {
                             if (authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ADMIN"))) {
@@ -53,6 +54,7 @@ public class SecurityConfig {
 
         return http.build();
     }
+
 
     @Bean
     public PasswordEncoder passwordEncoder() {

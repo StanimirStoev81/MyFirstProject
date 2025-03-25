@@ -9,6 +9,7 @@ import java.util.Set;
 @Entity
 @Table(name = "offerings")
 public class Offering extends BaseEntity{
+
     @Column(nullable = false)
     private String name;
 
@@ -18,7 +19,7 @@ public class Offering extends BaseEntity{
     @Column(nullable = false)
     private BigDecimal price;
 
-    @ManyToMany(mappedBy = "services")
+    @ManyToMany(mappedBy = "offerings")
     private Set<Reservation> reservations = new HashSet<>();
 
     public Offering() {
@@ -29,6 +30,13 @@ public class Offering extends BaseEntity{
         this.description = description;
         this.price = price;
         this.reservations = reservations;
+    }
+
+    public Offering(String name, BigDecimal price,String description) {
+
+        this.name = name;
+        this.price = price;
+        this.description = description;
     }
 
     public String getName() {

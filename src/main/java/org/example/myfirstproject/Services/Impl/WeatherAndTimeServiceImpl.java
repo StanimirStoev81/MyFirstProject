@@ -16,7 +16,7 @@ public class WeatherAndTimeServiceImpl {
     private final WebClient webClient;
 
     // API ключ и настройки
-    private static final String WEATHER_API_KEY = "9a7e562a385415699456166903904ba5";  // 🔴 Замени с твоя API ключ
+    private static final String WEATHER_API_KEY = "9a7e562a385415699456166903904ba5";
     private static final String CITY = "Sofia";
     private static final String COUNTRY_CODE = "BG";
 

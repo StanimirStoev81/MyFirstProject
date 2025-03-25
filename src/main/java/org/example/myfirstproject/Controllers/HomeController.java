@@ -1,6 +1,7 @@
 package org.example.myfirstproject.Controllers;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 
@@ -26,4 +27,5 @@ public class HomeController {
     public String userHome() {
         return "userHome"; // Трябва да имаш userHome.html в templates
     }
+
 }
