@@ -1,0 +1,106 @@
+/* Основни стилове за тялото */
+body {
+    background-color: yellow; /* Жълт фон */
+    color: black; /* Черен текст */
+    font-family: Arial, sans-serif;
+}
+
+/* Хедър */
+.header {
+    background-color: black; /* Черен хедър */
+    color: yellow; /* Жълт текст */
+    padding: 15px;
+    text-align: center;
+    position: relative;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+/* Бутон в хедъра - позициониран вдясно */
+.header .header-button {
+    background-color: yellow;
+    color: black;
+    padding: 8px 12px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: bold;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    border-radius: 8px; /* Заоблени ъгли */
+}
+
+.header .header-button:hover {
+    background-color: green;
+    color: white;
+}
+
+/* Стилове за нотификациите */
+.notification-list li.unread {
+    font-weight: bold;
+}
+
+.notification-list li.read {
+    font-weight: normal;
+}
+
+.unread-text {
+    color: red; /* Червено за непрочетени */
+}
+
+.read-text {
+    color: black; /* Черно за прочетени */
+}
+
+.unread-badge {
+    background-color: red;
+    color: white;
+    padding: 3px 6px;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+.no-notifications {
+    font-style: italic;
+    color: gray;
+}
+
+/* Черен бутон с жълт текст в бодито */
+.mark-read-btn {
+    background-color: black;
+    color: yellow;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    margin: 15px 0;
+    border-radius: 8px; /* Заоблени ъгли */
+}
+
+.mark-read-btn:hover {
+    background-color: green;
+    color: white;
+}
+
+/* Контейнер за съдържанието */
+.container {
+    padding: 20px;
+}
+
+.notification-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.notification-list li {
+    margin: 5px 0;
+    padding: 10px;
+    background-color: #FFF;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}

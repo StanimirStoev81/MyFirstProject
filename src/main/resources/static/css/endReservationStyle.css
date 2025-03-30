@@ -1,0 +1,62 @@
+body {
+    background-color: yellow;
+    font-family: Arial, sans-serif;
+}
+.container {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+    text-align: center;
+}
+.header {
+    background: black;
+    color: yellow;
+    padding: 10px;
+    font-size: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px 10px 0 0;
+}
+.back-btn {
+    background: yellow;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.back-btn:hover {
+    background: green;
+    color: white;
+}
+.summary-container {
+    margin: 20px 0;
+    font-size: 18px;
+}
+.pay-btn {
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.online {
+    background: #28a745;
+    color: white;
+}
+.online:hover {
+    background: #218838;
+}
+.cash {
+    background: #dc3545;
+    color: white;
+}
+.cash:hover {
+    background: #c82333;
+}

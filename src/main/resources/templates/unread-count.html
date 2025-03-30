@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Notifications</title>
+    <link rel="stylesheet" type="text/css" href="/css/notification.css">
+    <script>
+        function markNotificationsAsRead() {
+            fetch('/notifications/mark-as-read', { method: 'POST' })
+                .then(response => {
+                    if (response.ok) {
+                        location.reload(); // Презарежда страницата след маркиране като прочетени
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        }
+    </script>
+</head>
+<body>
+
+<header class="header">
+    <h1>Notifications</h1>
+    <a th:href="@{/userHome}" class="header-button">Back to Home</a>
+</header>
+
+<main class="container">
+    <h2>Your Notifications</h2>
+
+    <button onclick="markNotificationsAsRead()" class="mark-read-btn">Mark all as read</button>
+
+    <ul class="notification-list">
+        <li th:if="${notifications.isEmpty()}" class="no-notifications">
+            <span>No new notifications</span>
+        </li>
+
+        <li th:each="notification : ${notifications}"
+            th:classappend="${notification.status.name() == 'SENT' ? ' unread' : ' read'}">
+            <span th:text="${notification.message}"
+                  th:classappend="${notification.status.name() == 'SENT' ? ' unread-text' : ' read-text'}"></span>
+            <span th:if="${notification.status.name() == 'SENT'}" class="unread-badge">New</span>
+        </li>
+    </ul>
+</main>
+
+</body>
+</html>
