@@ -1,6 +1,7 @@
 package org.example.myfirstproject.Repositories;
 
 import org.example.myfirstproject.Models.Entities.Reservation;
+import org.example.myfirstproject.Models.Entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -10,7 +11,6 @@ import java.util.Optional;
 
 @Repository
 public interface ReservationRepository extends JpaRepository<Reservation, Long> {
-    @Query("SELECT r FROM Reservation r WHERE r.user.id = :userId ORDER BY r.id DESC LIMIT 1")
-    Optional<Reservation> findLatestReservationByUserId(@Param("userId") Long userId);
 
+    Optional<Reservation> findTopByUserOrderByIdDesc(User user);
 }

@@ -3,6 +3,7 @@ package org.example.myfirstproject.Services;
 import jakarta.transaction.Transactional;
 import org.example.myfirstproject.Models.DTO.SettingsDTO;
 import org.example.myfirstproject.Models.DTO.UserRegisterDTO;
+import org.example.myfirstproject.Models.Entities.BaseEntity;
 import org.example.myfirstproject.Models.Entities.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
@@ -17,4 +18,6 @@ public interface UserService extends UserDetailsService {
     void updateAdminSettings(SettingsDTO settingsDTO);
 
     void updateUserSettings(SettingsDTO settingsDTO);
+
+    User getUserByUsername(String username);
 }

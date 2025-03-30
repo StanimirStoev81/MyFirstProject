@@ -12,6 +12,9 @@
     <h1 class="header-title">User Dashboard</h1>
     <a th:href="@{/user/reservation}" class="header-button">Reservation</a> <!-- 🔹 Добавен бутон -->
     <a th:href="@{/user/settings}" class="header-button">Settings</a>
+    <a th:href="@{/notifications}" class="header-button notification-btn">
+        Notifications <span id="notificationBadge" class="badge">0</span>
+    </a>
 </header>
 
 <main class="container">
@@ -22,6 +25,20 @@
 <div id="weather-time"></div>
 
 <script src="/js/script.js"></script>
-
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        fetch('/notifications/unread-count')
+            .then(response => response.json())
+            .then(data => {
+                let badge = document.getElementById("notificationBadge");
+                if (data.count > 0) {
+                    badge.textContent = data.count;
+                    badge.style.backgroundColor = "red"; // Оцветява в червено при непрочетени
+                } else {
+                    badge.style.display = "none"; // Скрива, ако няма нотификации
+                }
+            });
+    });
+</script>
 </body>
 </html>

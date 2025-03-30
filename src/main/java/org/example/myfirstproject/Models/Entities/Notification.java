@@ -37,4 +37,16 @@ public class Notification extends BaseEntity {
     public User getUser() {
         return user;
     }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public void setStatus(NotificationStatusEnum status) {
+        this.status = status;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }

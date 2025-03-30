@@ -79,4 +79,9 @@ public  class ReservationServiceImpl implements ReservationService {
 
         reservationRepository.save(reservation);
     }
+
+    public Optional<Reservation> findLastReservationByUsername(String username) {
+        return userRepository.findByUsername(username)
+                .flatMap(user -> reservationRepository.findTopByUserOrderByIdDesc(user));
+    }
 }
