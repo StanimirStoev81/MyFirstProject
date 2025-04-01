@@ -13,6 +13,10 @@
     <a th:href="@{/admin/users}" class="header-button">Users</a>
     <a th:href="@{/admin/reservations}" class="header-button">Reservations</a>
     <a th:href="@{/admin/settings}" class="header-button">Settings</a>
+    <a th:href="@{/notifications}" class="header-button notification-btn">
+        Notifications <span id="notificationBadge" class="badge">0</span>
+    </a>
+
 </header>
 
 <main class="container">
@@ -41,6 +45,21 @@
     setInterval(() => {
         fetchWeatherAndTime().catch(console.error);
     }, 30000);
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        fetch('/notifications/unread-count')
+            .then(response => response.json())
+            .then(data => {
+                let badge = document.getElementById("notificationBadge");
+                if (data.count > 0) {
+                    badge.textContent = data.count;
+                    badge.style.backgroundColor = "red"; // Оцветява в червено при непрочетени
+                } else {
+                    badge.style.display = "none"; // Скрива, ако няма нотификации
+                }
+            });
+    });
 </script>
 </body>
 </html>

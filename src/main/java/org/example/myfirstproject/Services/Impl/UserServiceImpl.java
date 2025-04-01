@@ -5,6 +5,7 @@ import org.example.myfirstproject.Models.DTO.SettingsDTO;
 import org.example.myfirstproject.Models.DTO.UserRegisterDTO;
 import org.example.myfirstproject.Models.Entities.User;
 import org.example.myfirstproject.Models.Enums.RoleEnum;
+import org.example.myfirstproject.Repositories.NotificationRepository;
 import org.example.myfirstproject.Repositories.UserRepository;
 import org.example.myfirstproject.Services.UserService;
 import org.springframework.context.annotation.Lazy;
@@ -15,16 +16,19 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final NotificationRepository notificationRepository;
 
-    public UserServiceImpl(UserRepository userRepository, @Lazy PasswordEncoder passwordEncoder) {
+    public UserServiceImpl(UserRepository userRepository, @Lazy PasswordEncoder passwordEncoder, NotificationRepository notificationRepository) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+        this.notificationRepository = notificationRepository;
     }
 
     // Регистрация на потребител
@@ -116,5 +120,19 @@ public class UserServiceImpl implements UserService {
     public User getUserByUsername(String username) {
         return userRepository.findByUsername(username)
                 .orElseThrow(() -> new RuntimeException("User not found: " + username));
+    }
+    @Override
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
+    }
+
+    @Override
+    @Transactional
+    public void deleteUserById(Long id) {
+        // Първо изтриваме всички свързани нотификации
+        notificationRepository.deleteByUserId(id);
+
+        // След това изтриваме потребителя
+        userRepository.deleteById(id);
     }
 }

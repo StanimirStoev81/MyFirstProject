@@ -53,4 +53,9 @@ public class NotificationServiceImpl implements NotificationService {
 
         notificationRepository.saveAll(unreadNotifications); // Запазваме промените в базата
     }
+    @Override
+    @Transactional
+    public void deleteNotification(Long id) {
+        notificationRepository.deleteById(id);
+    }
 }

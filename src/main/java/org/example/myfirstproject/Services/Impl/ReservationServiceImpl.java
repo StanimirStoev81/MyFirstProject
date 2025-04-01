@@ -7,6 +7,7 @@ import org.example.myfirstproject.Models.Entities.Reservation;
 import org.example.myfirstproject.Models.Entities.User;
 import org.example.myfirstproject.Models.Enums.ReservationStatusEnum;
 import org.example.myfirstproject.Repositories.OfferingRepository;
+import org.example.myfirstproject.Repositories.PaymentRepository;
 import org.example.myfirstproject.Repositories.ReservationRepository;
 import org.example.myfirstproject.Repositories.UserRepository;
 import org.example.myfirstproject.Services.ReservationService;
@@ -26,11 +27,13 @@ public  class ReservationServiceImpl implements ReservationService {
     private final ReservationRepository reservationRepository;
     private final OfferingRepository offeringRepository;
     private final UserRepository userRepository;
+    private final PaymentRepository paymentRepository;
 
-    public ReservationServiceImpl(ReservationRepository reservationRepository, OfferingRepository offeringRepository, UserRepository userRepository) {
+    public ReservationServiceImpl(ReservationRepository reservationRepository, OfferingRepository offeringRepository, UserRepository userRepository, PaymentRepository paymentRepository) {
         this.reservationRepository = reservationRepository;
         this.offeringRepository = offeringRepository;
         this.userRepository = userRepository;
+        this.paymentRepository = paymentRepository;
     }
 
 
@@ -40,10 +43,15 @@ public  class ReservationServiceImpl implements ReservationService {
     public void createReservation(ReservationDTO reservationDTO, List<Long> selectedOfferingIds) {
         // Намираме потребителя по email
         Optional<User> userOpt = userRepository.findByEmail(reservationDTO.getEmail());
+        User user;
         if (userOpt.isEmpty()) {
-            throw new IllegalArgumentException("User not found!");
+            // 🟢 Ако потребителят не бъде намерен, вземаме админа с ID = 1
+            user = userRepository.findById(1L)
+                    .orElseThrow(() -> new IllegalArgumentException("Admin not found!"));
+        } else {
+            // 🟢 Ако намерим потребител, взимаме него
+            user = userOpt.get();
         }
-        User user = userOpt.get();
 
         // 🟢 Изчисляваме броя нощувки
         long nights = ChronoUnit.DAYS.between(reservationDTO.getStartDate(), reservationDTO.getEndDate());
@@ -83,5 +91,19 @@ public  class ReservationServiceImpl implements ReservationService {
     public Optional<Reservation> findLastReservationByUsername(String username) {
         return userRepository.findByUsername(username)
                 .flatMap(user -> reservationRepository.findTopByUserOrderByIdDesc(user));
+    }
+    @Override
+    public List<Reservation> getAllReservations() {
+        return reservationRepository.findAll();
+    }
+
+    @Override
+    @Transactional
+    public void deleteReservationById(Long id) {
+        // Първо изтриваме всички свързани плащания
+        paymentRepository.deleteByReservationId(id);
+
+        // След това изтриваме резервацията
+        reservationRepository.deleteById(id);
     }
 }

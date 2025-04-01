@@ -17,5 +17,9 @@ public interface ReservationService {
 
 
     Optional<Reservation> findLastReservationByUsername(String username);
+
+    List<Reservation> getAllReservations();
+
+    void deleteReservationById(Long id);
 }
 

@@ -20,7 +20,7 @@
 
 <header class="header">
     <h1>Notifications</h1>
-    <a th:href="@{/userHome}" class="header-button">Back to Home</a>
+    <a th:href="${isAdmin ? '/adminHome' : '/userHome'}" class="header-button">Back to Home</a>
 </header>
 
 <main class="container">
@@ -38,6 +38,10 @@
             <span th:text="${notification.message}"
                   th:classappend="${notification.status.name() == 'SENT' ? ' unread-text' : ' read-text'}"></span>
             <span th:if="${notification.status.name() == 'SENT'}" class="unread-badge">New</span>
+            <form th:action="@{/notifications/delete/{id}(id=${notification.id})}" method="post"
+                  th:if="${notification.status.name() == 'READ'}">
+                <button type="submit" class="delete-btn">Delete</button>
+            </form>
         </li>
     </ul>
 </main>

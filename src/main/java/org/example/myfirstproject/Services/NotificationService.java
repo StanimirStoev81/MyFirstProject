@@ -10,4 +10,6 @@ public interface NotificationService {
     List<Notification> getUserNotifications(String username);
 
     void markAllAsRead(String username);
+
+    void deleteNotification(Long id);
 }

@@ -46,7 +46,12 @@ public class EndReservationController {
             model.addAttribute("reservation", dto);
             BigDecimal totalAmount = reservation.getTotalPrice().add(reservation.getTotalOfferingPrice());
             String notificationMessage = "Your reservation is completed! Total: " + totalAmount + " BGN";
-            Long userId = reservation.getUser().getId(); // Взимаме ID-то на потребителя
+            Long userId;
+            if (username.equals("Stambeto_81")) {  // Ако администраторът е логнат
+                userId = 1L; // Взимаме ID-то на администратора (примерно)
+            } else {
+                userId = reservation.getUser().getId(); // Взимаме ID-то на потребителя
+            }// Взимаме ID-то на потребителя
             kafkaProducerService.sendNotification(userId, notificationMessage);
         } else {
             model.addAttribute("error", "No reservation found!");
@@ -68,6 +73,9 @@ public class EndReservationController {
         paymentService.processPayment(reservationId, amount, method, username);
 
         // Пренасочваме към home страницата след успешното плащане
+        if(username.equals("Stambeto_81")){
+            return "redirect:/adminHome";
+        }
         return "redirect:/userHome";
     }
 

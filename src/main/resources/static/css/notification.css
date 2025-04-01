@@ -104,3 +104,18 @@ body {
     border: 1px solid #ccc;
     border-radius: 5px;
 }
+.delete-btn {
+    background-color: red;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+    margin-left: 10px;
+    font-weight: bold;
+}
+
+.delete-btn:hover {
+    background-color: darkred;
+    color: white;
+}

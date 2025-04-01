@@ -7,6 +7,8 @@ import org.example.myfirstproject.Models.Entities.BaseEntity;
 import org.example.myfirstproject.Models.Entities.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
+import java.util.List;
+
 public interface UserService extends UserDetailsService {
     boolean registerUser(UserRegisterDTO userRegisterDTO);
 
@@ -20,4 +22,9 @@ public interface UserService extends UserDetailsService {
     void updateUserSettings(SettingsDTO settingsDTO);
 
     User getUserByUsername(String username);
+
+
+        List<User> getAllUsers();
+        void deleteUserById(Long id);
+
 }
