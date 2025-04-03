@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Write a Review</title>
+    <link rel="stylesheet" type="text/css" href="/css/review.css">
+</head>
+<body>
+
+<header class="header">
+    <a th:href="@{/userHome}" class="header-button">Back</a>
+    <h1>Write a Review</h1>
+</header>
+
+<main class="container">
+    <h2>Share Your Experience</h2>
+
+    <form th:action="@{/user/review/submit}" method="post">
+        <label for="rating">Rating:</label>
+        <select name="rating" id="rating" required>
+            <option value="1">1 - Poor</option>
+            <option value="2">2 - Fair</option>
+            <option value="3">3 - Good</option>
+            <option value="4">4 - Very Good</option>
+            <option value="5">5 - Excellent</option>
+        </select>
+
+        <label for="message">Your Review:</label>
+        <textarea name="message" id="message" placeholder="Write your review here..." required></textarea>
+
+        <button type="submit" class="submit-btn">Submit</button>
+    </form>
+</main>
+
+</body>
+</html>
