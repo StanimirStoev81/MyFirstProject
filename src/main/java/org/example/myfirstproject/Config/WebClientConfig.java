@@ -11,4 +11,10 @@ public class WebClientConfig {
     public WebClient webClient() {
         return WebClient.builder().build();
     }
+    @Bean
+    public WebClient reviewServiceClient() {
+        return WebClient.builder()
+                .baseUrl("http://localhost:8081/api/reviews")
+                .build();
+    }
 }

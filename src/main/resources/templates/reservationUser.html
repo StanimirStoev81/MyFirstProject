@@ -9,7 +9,7 @@
 
 <!-- Хедър с бутон за връщане -->
 <div class="header">
-    <a href="/userHome" class="back-button">Back</a>
+    <a th:href="${isAdmin ? '/adminHome' : '/userHome'}" class="back-button">Back</a>
     Reservation
 </div>
 

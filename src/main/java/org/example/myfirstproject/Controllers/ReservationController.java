@@ -5,6 +5,7 @@ import org.example.myfirstproject.Models.DTO.ReservationDTO;
 import org.example.myfirstproject.Services.OfferingService;
 import org.example.myfirstproject.Services.ReservationService;
 import org.example.myfirstproject.Services.UserService;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -27,8 +28,13 @@ public class ReservationController {
 
     // 🟢 GET заявка - Показва reservationUser.html
     @GetMapping
-    public String showReservationForm(Model model) {
+    public String showReservationForm(Model model, Authentication authentication) {
         model.addAttribute("offerings", offeringService.getAllOfferings());
+        boolean isAdmin = authentication.getAuthorities().stream()
+                .anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals("ADMIN"));
+
+        // Добавяме атрибут за правилно пренасочване
+        model.addAttribute("isAdmin", isAdmin);
         return "reservationUser";
     }
 

@@ -39,5 +39,21 @@ public class OfferingServiceImpl implements OfferingService {
 
         return offeringList;
     }
+    @Override
+    public void addOffering(Offering offering) {
+        offeringRepository.save(offering);
+    }
+
+    @Override
+    public void updatePrice(Long id, BigDecimal price) {
+        Offering offering = offeringRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Offering not found"));
+        offering.setPrice(price);
+        offeringRepository.save(offering);
+    }
+
+    @Override
+    public void deleteOffering(Long id) {
+        offeringRepository.deleteById(id);
+    }
 
 }
