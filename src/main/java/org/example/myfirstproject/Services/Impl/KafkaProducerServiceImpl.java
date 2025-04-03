@@ -13,9 +13,10 @@ import java.util.Map;
 public class KafkaProducerServiceImpl implements KafkaProducerService {
 
     private final KafkaTemplate<String, String> kafkaTemplate;
-
-    public KafkaProducerServiceImpl(KafkaTemplate<String, String> kafkaTemplate) {
+    private final ObjectMapper objectMapper;
+    public KafkaProducerServiceImpl(KafkaTemplate<String, String> kafkaTemplate, ObjectMapper objectMapper) {
         this.kafkaTemplate = kafkaTemplate;
+        this.objectMapper = objectMapper;
     }
 
     @Override
@@ -24,7 +25,7 @@ public class KafkaProducerServiceImpl implements KafkaProducerService {
         notificationData.put("userId", userId);
         notificationData.put("message", message);
 
-        ObjectMapper objectMapper = new ObjectMapper();
+
         try {
             String jsonMessage = objectMapper.writeValueAsString(notificationData);
             kafkaTemplate.send("notifications", jsonMessage); // 🔹 Изпращаме JSON
