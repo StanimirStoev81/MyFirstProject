@@ -1,5 +1,6 @@
 package org.example.myfirstproject.Services.Impl;
 
+import org.example.myfirstproject.Models.DTO.PaymentDTO;
 import org.example.myfirstproject.Models.Entities.Payment;
 import org.example.myfirstproject.Models.Entities.Reservation;
 import org.example.myfirstproject.Models.Entities.User;
@@ -12,7 +13,9 @@ import org.example.myfirstproject.Services.ReservationService;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class PaymentServiceImpl implements PaymentService {
@@ -58,5 +61,33 @@ public class PaymentServiceImpl implements PaymentService {
                 paymentRepository.save(payment);
             }
         }
+    }
+    @Override
+    public List<PaymentDTO> getAllPayments() {
+        return paymentRepository.findAll().stream()
+                .map(payment -> new PaymentDTO(
+                        payment.getId(),
+                        payment.getUser().getFirstName(),
+                        payment.getUser().getLastName(),
+                        payment.getAmount(),
+                        payment.getMethod(),
+                        payment.getStatus()
+                ))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public void pay(Long id) {
+        Optional<Payment> optionalPayment = paymentRepository.findById(id);
+        if (optionalPayment.isPresent()) {
+            Payment payment = optionalPayment.get();
+            payment.setStatus(PaymentStatusEnum.PAID);
+            paymentRepository.save(payment);
+        }
+    }
+
+    @Override
+    public void delete(Long id) {
+        paymentRepository.deleteById(id);
     }
 }

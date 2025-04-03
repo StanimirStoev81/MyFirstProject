@@ -13,4 +13,5 @@ public interface OfferingService {
     void updatePrice(Long id, BigDecimal price);
     void deleteOffering(Long id);
 
+    List<OfferingDTO> getAllOfferingsForAdmin();
 }

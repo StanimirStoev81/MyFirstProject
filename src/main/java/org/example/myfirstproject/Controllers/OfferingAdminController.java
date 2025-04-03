@@ -22,8 +22,8 @@ public class OfferingAdminController {
 
     // Показва страничката с всички оферинги
     @GetMapping
-    public String showOfferings(Model model) {
-        model.addAttribute("offerings", offeringService.getAllOfferings());
+    public String showAllOfferingsForAdmin(Model model) {
+        model.addAttribute("offerings", offeringService.getAllOfferingsForAdmin());
         return "offerings-admin";
     }
 

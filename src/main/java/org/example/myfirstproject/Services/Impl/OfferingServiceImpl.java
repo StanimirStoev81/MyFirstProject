@@ -55,5 +55,15 @@ public class OfferingServiceImpl implements OfferingService {
     public void deleteOffering(Long id) {
         offeringRepository.deleteById(id);
     }
+    @Override
+    public List<OfferingDTO> getAllOfferingsForAdmin() {
+        List<OfferingDTO> offeringList = offeringRepository.findAll().stream()
+                .map(offering -> new OfferingDTO(offering.getId(), offering.getName(), offering.getPrice()))
+                .collect(Collectors.toList());
+
+        System.out.println("Admin Offerings loaded from DB: " + offeringList); // ✅ Лог на офертите
+
+        return offeringList;
+    }
 
 }
