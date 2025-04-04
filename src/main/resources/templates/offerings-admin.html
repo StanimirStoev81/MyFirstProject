@@ -19,6 +19,7 @@
     <form th:action="@{/admin/offerings/add}" method="post" class="add-offering-form">
         <input type="text" name="name" placeholder="Name" required>
         <input type="number" step="0.01" name="price" placeholder="Price" required>
+        <input type="text" name="description" placeholder="Description" required>
         <button type="submit" class="add-btn">Add Offering</button>
     </form>
 

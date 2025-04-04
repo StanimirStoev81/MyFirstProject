@@ -6,14 +6,22 @@ public class OfferingDTO {
     private Long id;
     private String name;
     private BigDecimal price;
-
+    private String description;
     public OfferingDTO(){
     }
 
-    public OfferingDTO(Long id, String name, BigDecimal price) {
+    public OfferingDTO(Long id, String name, BigDecimal price,String description) {
         this.id = id;
         this.name = name;
         this.price = price;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Long getId() {

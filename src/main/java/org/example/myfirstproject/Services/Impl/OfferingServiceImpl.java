@@ -32,7 +32,7 @@ public class OfferingServiceImpl implements OfferingService {
     public List<OfferingDTO> getAllOfferings() {
         List<OfferingDTO> offeringList = offeringRepository.findAll().stream()
                 .filter(offering -> !offering.getName().equalsIgnoreCase("Overnight Stay"))
-                .map(offering -> new OfferingDTO(offering.getId(), offering.getName(), offering.getPrice()))
+                .map(offering -> new OfferingDTO(offering.getId(), offering.getName(), offering.getPrice(),offering.getDescription()))
                 .collect(Collectors.toList());
 
         System.out.println("Offerings loaded from DB: " + offeringList); // ✅ Лог на офертите
@@ -58,7 +58,7 @@ public class OfferingServiceImpl implements OfferingService {
     @Override
     public List<OfferingDTO> getAllOfferingsForAdmin() {
         List<OfferingDTO> offeringList = offeringRepository.findAll().stream()
-                .map(offering -> new OfferingDTO(offering.getId(), offering.getName(), offering.getPrice()))
+                .map(offering -> new OfferingDTO(offering.getId(), offering.getName(), offering.getPrice(),offering.getDescription()))
                 .collect(Collectors.toList());
 
         System.out.println("Admin Offerings loaded from DB: " + offeringList); // ✅ Лог на офертите
