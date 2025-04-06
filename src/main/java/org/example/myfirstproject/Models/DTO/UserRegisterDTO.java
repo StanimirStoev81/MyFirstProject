@@ -33,7 +33,10 @@ public class UserRegisterDTO implements Serializable {
     @NotBlank(message = "Confirm password is required.")
     private String confirmPassword;
 
-
+    @AssertTrue(message = "Passwords do not match.")
+    public boolean isPasswordsMatching() {
+        return password.equals(confirmPassword);
+    }
     //private String role;
 
 

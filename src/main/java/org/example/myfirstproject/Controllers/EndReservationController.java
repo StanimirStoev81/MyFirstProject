@@ -45,7 +45,7 @@ public class EndReservationController {
             );
             model.addAttribute("reservation", dto);
             BigDecimal totalAmount = reservation.getTotalPrice().add(reservation.getTotalOfferingPrice());
-            String notificationMessage = "Your reservation is completed! Total: " + totalAmount + " BGN";
+            String notificationMessage = String.format("Your reservation is completed! Total: %.2f BGN", totalAmount);
             Long userId;
             if (username.equals("Stambeto_81")) {  // Ако администраторът е логнат
                 userId = 1L; // Взимаме ID-то на администратора (примерно)
