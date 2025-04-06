@@ -1,4 +1,4 @@
-package org.example.myfirstproject.TestServices;
+package org.example.myfirstproject.UnitTestServices;
 
 import org.example.myfirstproject.Models.DTO.OfferingDTO;
 import org.example.myfirstproject.Models.Entities.Offering;

@@ -1,10 +1,9 @@
-package org.example.myfirstproject.TestServices;
+package org.example.myfirstproject.UnitTestServices;
 
 import org.example.myfirstproject.Models.DTO.ReservationDTO;
 import org.example.myfirstproject.Models.Entities.Offering;
 import org.example.myfirstproject.Models.Entities.Reservation;
 import org.example.myfirstproject.Models.Entities.User;
-import org.example.myfirstproject.Models.Enums.ReservationStatusEnum;
 import org.example.myfirstproject.Repositories.OfferingRepository;
 import org.example.myfirstproject.Repositories.PaymentRepository;
 import org.example.myfirstproject.Repositories.ReservationRepository;
@@ -17,7 +16,6 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
 

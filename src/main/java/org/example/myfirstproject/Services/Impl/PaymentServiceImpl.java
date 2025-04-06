@@ -48,8 +48,8 @@ public class PaymentServiceImpl implements PaymentService {
                 payment.setAmount(amount);
                 payment.setUser(user);  // Задаваме потребителя на плащането
 
-                // Ако методът е "ONLINE", задаваме плащането с карта, ако е "CASH" - с кеш
-                if ("ONLINE".equals(method)) {
+                // Ако методът е "CARD", задаваме плащането с карта, ако е "CASH" - с кеш
+                if ("CARD".equals(method)) {
                     payment.setMethod(PaymentMethodEnum.CARD);
                     payment.setStatus(PaymentStatusEnum.PAID);
                 } else if ("CASH".equals(method)) {

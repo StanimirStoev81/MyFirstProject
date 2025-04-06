@@ -1,11 +1,10 @@
-package org.example.myfirstproject.TestServices;
+package org.example.myfirstproject.UnitTestServices;
 
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.example.myfirstproject.Models.Entities.Notification;
 import org.example.myfirstproject.Models.Entities.User;
-import org.example.myfirstproject.Models.Enums.NotificationStatusEnum;
 import org.example.myfirstproject.Repositories.NotificationRepository;
 import org.example.myfirstproject.Repositories.UserRepository;
 import org.example.myfirstproject.Services.Impl.KafkaConsumerServiceImpl;
